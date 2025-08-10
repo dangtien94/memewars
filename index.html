@@ -7,11 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Prevent body from scrolling when columns are scrolled */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- Header with Logo and Buttons -->
     <div class="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
-        <div class="container mx-auto flex items-center justify-between py-4 px-4 sm:px-0">
+        <div class="w-full flex items-center justify-between py-4 px-4 sm:px-4">
             <!-- Logo -->
             <img src="https://via.placeholder.com/150x50" alt="Logo" class="h-12">
             <!-- Buttons -->
@@ -28,60 +36,79 @@
         </div>
     </div>
 
-    <main class="container mx-auto pt-20 pb-6">
-        <!-- Game Section -->
-        <section id="game" class="py-10">
-            <!-- Category Buttons and Search -->
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                <div class="flex flex-wrap gap-2">
-                    <button class="category-btn px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors" data-category="all">All</button>
-                    <button class="category-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" data-category="Trending">Trending</button>
-                    <button class="category-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" data-category="Classic">Classic</button>
-                    <button class="category-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" data-category="Elon's">Elon's</button>
-                    <button class="category-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" data-category="Community">Community</button>
-                    <button class="category-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" data-category="Physics">Physics</button>
+    <main class="h-[calc(100vh-5rem)] mt-20">
+        <!-- Games Collection Heading -->
+        <div class="bg-white shadow-md py-4 px-4">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 text-left">Games Collection</h1>
+        </div>
+        <div class="flex flex-row h-full">
+            <!-- Sidebar with Category Buttons and Search -->
+            <aside class="w-20 sm:w-32 md:w-48 lg:w-64 bg-white shadow-lg p-4 overflow-y-auto">
+                <!-- Search -->
+                <div class="mb-4">
+                    <input type="text" id="search-input" class="w-full px-2 py-1 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search...">
                 </div>
-                <input type="text" id="search-input" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search games...">
-            </div>
+                <!-- Category Buttons -->
+                <div class="flex flex-col gap-2">
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors text-left" data-category="all">All</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Trending">Trending</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Classic">Classic</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Elon's">Elon's</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Community">Community</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Physics">Physics</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Puzzle">Puzzle</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Adventure">Adventure</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Racing">Racing</button>
+                    <button class="category-btn px-2 py-1 text-sm rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors text-left" data-category="Strategy">Strategy</button>
+                </div>
+            </aside>
 
-            <!-- Grid List -->
-            <div id="game-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Grid items populated by JavaScript -->
-            </div>
+            <!-- Game Section and Other Content -->
+            <div class="flex-1 bg-white shadow-lg p-4 overflow-y-auto">
+                <!-- Game Section -->
+                <section id="game">
+                    <!-- Grid List -->
+                    <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Grid items populated by JavaScript -->
+                    </div>
 
-            <!-- Pagination -->
-            <div id="pagination" class="flex justify-center items-center space-x-2 mt-8">
-                <!-- Pagination buttons populated by JavaScript -->
-            </div>
-        </section>
+                    <!-- Pagination -->
+                    <div id="pagination" class="flex justify-center items-center space-x-2 mt-6">
+                        <!-- Pagination buttons populated by JavaScript -->
+                    </div>
+                </section>
 
-        <!-- About Us Section -->
-        <section id="about" class="py-10">
-            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">About Us! 🎮✨</h2>
-                <p class="text-gray-600 text-lg mb-4">Welcome to our world! We're not just a game dev studio—we're a wild mix of Millennials and Gen Z hardcore gamers who've been leveling up in the industry for the past six years. Stuck in the box for too long, we decided it's time to break free and do something epic.</p>
-                <p class="text-gray-600 text-lg mb-4">Fueled by an “itch-you-can't-scratch” kind of idea (and a sprinkle of Elon Musk inspiration), we asked ourselves: What if we turned trending memes into bite-sized, insanely fun Web 3 games? Minimal mechanics, maximum fun—that's our vibe!</p>
-                <p class="text-gray-600 text-lg mb-4">Our mission? To create quick bursts of joy, make people smile (even if just for a few seconds), and grow alongside the community.</p>
-                <p class="text-gray-600 text-lg mb-4">But wait, there's more! We're not just about the games—we're building an entire ecosystem. As gamers and developers ourselves, we take this opportunity seriously (like, super seriously). Let's change the game together! 🚀</p>
-                <p class="text-gray-600 text-lg">And hey, if you're dreaming of a wild meme game, we've got you! We even take payments in $WTF—because why not keep it iconic?</p>
-            </div>
-        </section>
+                <!-- About Us Section -->
+                <section id="about" class="py-8">
+                    <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl p-6 text-center">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">About Us! 🎮✨</h2>
+                        <p class="text-gray-600 text-base mb-4">Welcome to our world! We're not just a game dev studio—we're a wild mix of Millennials and Gen Z hardcore gamers who've been leveling up in the industry for the past six years. Stuck in the box for too long, we decided it's time to break free and do something epic.</p>
+                        <p class="text-gray-600 text-base mb-4">Fueled by an “itch-you-can't-scratch” kind of idea (and a sprinkle of Elon Musk inspiration), we asked ourselves: What if we turned trending memes into bite-sized, insanely fun Web 3 games? Minimal mechanics, maximum fun—that's our vibe!</p>
+                        <p class="text-gray-600 text-base mb-4">Our mission? To create quick bursts of joy, make people smile (even if just for a few seconds), and grow alongside the community.</p>
+                        <p class="text-gray-600 text-base mb-4">But wait, there's more! We're not just about the games—we're building an entire ecosystem. As gamers and developers ourselves, we take this opportunity seriously (like, super seriously). Let's change the game together! 🚀</p>
+                        <p class="text-gray-600 text-base">And hey, if you're dreaming of a wild meme game, we've got you! We even take payments in $WTF—because why not keep it iconic?</p>
+                    </div>
+                </section>
 
-        <!-- Footer Div -->
-<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6 text-center">
-    <p class="text-gray-800 font-bold text-lg mb-2">2025 MEME WAR TOKEN All rights reserved</p>
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
-        <p class="text-gray-600 text-sm">
-            Contract Address: 
-            <span id="contract-address" class="font-mono">0x1234567890abcdef1234567890abcdef12345678</span>
-        </p>
-        <button id="copy-btn" class="flex items-center gap-1 px-3 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors">
-            <i class="fas fa-copy"></i>
-            Copy
-        </button>
-    </div>
-    <p id="copy-status" class="text-green-600 text-sm mt-2 hidden">Copied!</p>
-</div>
+                <!-- Footer Div -->
+                <div class="py-6">
+                    <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl p-6 text-center">
+                        <p class="text-gray-800 font-bold text-base mb-2">2025 MEME WAR TOKEN All rights reserved</p>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
+                            <p class="text-gray-600 text-sm">
+                                Contract Address: 
+                                <span id="contract-address" class="font-mono">0x1234567890abcdef1234567890abcdef12345678</span>
+                            </p>
+                            <button id="copy-btn" class="flex items-center gap-1 px-3 py-1 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                        <p id="copy-status" class="text-green-600 text-sm mt-2 hidden">Copied!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -126,13 +153,13 @@
 
             paginatedGames.forEach(game => {
                 const gameItem = document.createElement('article');
-                gameItem.className = 'bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 cursor-pointer';
+                gameItem.className = 'bg-gray-50 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 cursor-pointer';
                 gameItem.innerHTML = `
-                    <img src="${game.thumbnail}" alt="${game.title}" class="h-48 w-full object-cover" loading="lazy">
-                    <div class="p-4">
-                        <h2 class="font-bold text-xl mb-2 text-gray-800">${game.title}</h2>
-                        <p class="text-gray-600 text-sm mb-4">${game.description}</p>
-                        <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 hover:shadow-md transition-all">Play Now</button>
+                    <img src="${game.thumbnail}" alt="${game.title}" class="h-32 w-full object-cover" loading="lazy">
+                    <div class="p-3">
+                        <h2 class="font-bold text-base mb-2 text-gray-800">${game.title}</h2>
+                        <p class="text-gray-600 text-xs mb-3">${game.description}</p>
+                        <button class="w-full bg-blue-500 text-white py-1 px-3 text-sm rounded-lg hover:bg-blue-600 hover:shadow-md transition-all">Play Now</button>
                     </div>
                 `;
                 grid.appendChild(gameItem);
@@ -152,11 +179,11 @@
             }
 
             const prevButton = document.createElement('button');
-            prevButton.className = `px-4 py-2 rounded-lg transition-colors ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`;
+            prevButton.className = `px-3 py-1 rounded-lg transition-colors ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`;
             prevButton.disabled = currentPage === 1;
             prevButton.innerHTML = `
                 <span class="sr-only">Previous</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             `;
@@ -177,7 +204,7 @@
 
             for (let i = startPage; i < startPage + totalDisplayPages && i <= totalPages; i++) {
                 const pageButton = document.createElement('button');
-                pageButton.className = `px-4 py-2 rounded-lg transition-colors ${i === currentPage ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 hover:bg-gray-300'}`;
+                pageButton.className = `px-3 py-1 rounded-lg transition-colors ${i === currentPage ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 hover:bg-gray-300'}`;
                 pageButton.textContent = i;
                 pageButton.addEventListener('click', () => {
                     currentPage = i;
@@ -188,11 +215,11 @@
             }
 
             const nextButton = document.createElement('button');
-            nextButton.className = `px-4 py-2 rounded-lg transition-colors ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`;
+            nextButton.className = `px-3 py-1 rounded-lg transition-colors ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'}`;
             nextButton.disabled = currentPage === totalPages;
             nextButton.innerHTML = `
                 <span class="sr-only">Next</span>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
             `;
